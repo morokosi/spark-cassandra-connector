@@ -275,7 +275,7 @@ object CassandraDirectJoinStrategy extends Logging {
   def validJoinBranch(plan: LogicalPlan, keys: Seq[Expression]): Boolean = {
     val safePlan = containsSafePlans(plan)
     val pkConstrained = allPartitionKeysAreJoined(plan, keys)
-    if (containsSafePlans(plan)) {
+    if (safePlan) {
       logDebug(s"Plan was safe")
     }
     if (pkConstrained) {
